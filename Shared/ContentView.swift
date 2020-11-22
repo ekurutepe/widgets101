@@ -27,6 +27,7 @@ struct ContentView: View {
                     .padding()
                     .background(Color.gray)
                 Text("there is an Image below")
+                    .foregroundColor(.secondary)
                 Image("swift-alps-logo")
                     .padding()
 
@@ -59,9 +60,9 @@ struct ContentView: View {
                 }
                 .foregroundColor(.green)
                 .padding()
-                .background(Color.secondary)
+                .background(Color.gray)
             }
-            .foregroundColor(.black)
+            .foregroundColor(.primary)
             .padding()
         }
     }
