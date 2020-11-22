@@ -13,6 +13,8 @@
 		875E3D44256AB75900EC142E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875E3D2F256AB75800EC142E /* ContentView.swift */; };
 		875E3D45256AB75900EC142E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 875E3D30256AB75900EC142E /* Assets.xcassets */; };
 		875E3D46256AB75900EC142E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 875E3D30256AB75900EC142E /* Assets.xcassets */; };
+		875E3D52256AD31000EC142E /* RKICoronaService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875E3D51256AD31000EC142E /* RKICoronaService.swift */; };
+		875E3D53256AD31000EC142E /* RKICoronaService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875E3D51256AD31000EC142E /* RKICoronaService.swift */; };
 		875E3D5D256ADB2500EC142E /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 875E3D5C256ADB2500EC142E /* WidgetKit.framework */; };
 		875E3D5F256ADB2500EC142E /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 875E3D5E256ADB2500EC142E /* SwiftUI.framework */; };
 		875E3D62256ADB2500EC142E /* CoronaWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875E3D61256ADB2500EC142E /* CoronaWidget.swift */; };
@@ -20,6 +22,7 @@
 		875E3D67256ADB2500EC142E /* CoronaWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 875E3D63256ADB2500EC142E /* CoronaWidget.intentdefinition */; };
 		875E3D68256ADB2500EC142E /* CoronaWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 875E3D63256ADB2500EC142E /* CoronaWidget.intentdefinition */; };
 		875E3D6B256ADB2500EC142E /* CoronaWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 875E3D5A256ADB2500EC142E /* CoronaWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		875E3D73256ADB4300EC142E /* RKICoronaService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875E3D51256AD31000EC142E /* RKICoronaService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +58,7 @@
 		875E3D3D256AB75900EC142E /* Widgets101.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Widgets101.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		875E3D3F256AB75900EC142E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		875E3D40256AB75900EC142E /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
+		875E3D51256AD31000EC142E /* RKICoronaService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RKICoronaService.swift; sourceTree = "<group>"; };
 		875E3D5A256ADB2500EC142E /* CoronaWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = CoronaWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		875E3D5C256ADB2500EC142E /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		875E3D5E256ADB2500EC142E /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -109,6 +113,7 @@
 				875E3D2E256AB75800EC142E /* Widgets101App.swift */,
 				875E3D2F256AB75800EC142E /* ContentView.swift */,
 				875E3D30256AB75900EC142E /* Assets.xcassets */,
+				875E3D51256AD31000EC142E /* RKICoronaService.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -289,6 +294,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				875E3D68256ADB2500EC142E /* CoronaWidget.intentdefinition in Sources */,
+				875E3D52256AD31000EC142E /* RKICoronaService.swift in Sources */,
 				875E3D43256AB75900EC142E /* ContentView.swift in Sources */,
 				875E3D41256AB75900EC142E /* Widgets101App.swift in Sources */,
 			);
@@ -298,6 +304,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				875E3D53256AD31000EC142E /* RKICoronaService.swift in Sources */,
 				875E3D44256AB75900EC142E /* ContentView.swift in Sources */,
 				875E3D42256AB75900EC142E /* Widgets101App.swift in Sources */,
 			);
@@ -307,6 +314,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				875E3D73256ADB4300EC142E /* RKICoronaService.swift in Sources */,
 				875E3D67256ADB2500EC142E /* CoronaWidget.intentdefinition in Sources */,
 				875E3D62256ADB2500EC142E /* CoronaWidget.swift in Sources */,
 			);
