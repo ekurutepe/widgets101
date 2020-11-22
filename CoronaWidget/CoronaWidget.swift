@@ -44,7 +44,25 @@ struct CoronaWidgetEntryView : View {
     var entry: Provider.Entry
 
     var body: some View {
-        Text(entry.date, style: .time)
+        VStack(spacing: 10) {
+            HStack {
+                Image("swift-alps-logo")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(height: 20, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                Text("Swift Alps")
+                Spacer()
+            }
+            .padding()
+            .font(.headline)
+            .foregroundColor(.white)
+            .background(Color.red)
+
+            Text("Hello Widgets!")
+            Text(entry.date, style: .time)
+            Spacer()
+        }
+        .background(RadialGradient(gradient: Gradient(colors: [Color.white, Color.gray]), center: .center, startRadius: 20, endRadius: 160))
     }
 }
 
@@ -63,7 +81,10 @@ struct CoronaWidget: Widget {
 
 struct CoronaWidget_Previews: PreviewProvider {
     static var previews: some View {
-        CoronaWidgetEntryView(entry: SimpleEntry(date: Date(), configuration: ConfigurationIntent()))
-            .previewContext(WidgetPreviewContext(family: .systemSmall))
+        Group {
+            CoronaWidgetEntryView(entry: SimpleEntry(date: Date(), configuration: ConfigurationIntent()))
+                .previewContext(WidgetPreviewContext(family: .systemSmall))
+
+        }
     }
 }
