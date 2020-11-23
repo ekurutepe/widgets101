@@ -39,6 +39,24 @@ struct SimpleEntry: TimelineEntry {
     let date: Date
     let configuration: ConfigurationIntent
     let size: CGSize
+    let germanyCount: Int
+}
+
+struct TopBar: View {
+    var body: some View {
+        HStack {
+            Image("swift-alps-logo")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(height: 20, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+            Text("Swift Alps")
+            Spacer()
+        }
+        .padding()
+        .font(.headline)
+        .foregroundColor(.white)
+        .background(Color.red)
+    }
 }
 
 struct CoronaWidgetEntryView : View {
