@@ -11,27 +11,35 @@ import Intents
 
 struct Provider: IntentTimelineProvider {
     func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date(), configuration: ConfigurationIntent(), size: context.displaySize)
+        SimpleEntry(date: Date(), configuration: ConfigurationIntent(), size: context.displaySize, germanyCount: 1234)
     }
 
     func getSnapshot(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-        let entry = SimpleEntry(date: Date(), configuration: configuration, size: context.displaySize)
+        let entry = SimpleEntry(date: Date(), configuration: configuration, size: context.displaySize, germanyCount: 1234)
         completion(entry)
     }
 
     func getTimeline(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
-        var entries: [SimpleEntry] = []
-
-        // Generate a timeline consisting of five entries an hour apart, starting from the current date.
         let currentDate = Date()
-        for hourOffset in 0 ..< 5 {
-            let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-            let entry = SimpleEntry(date: entryDate, configuration: configuration, size: context.displaySize)
-            entries.append(entry)
-        }
 
-        let timeline = Timeline(entries: entries, policy: .atEnd)
-        completion(timeline)
+        RKICoronaService.shared.fetchGermany { (result) in
+            if case .success(let count) = result {
+
+                let entry = SimpleEntry(
+                    date: currentDate,
+                    configuration: configuration,
+                    size: context.displaySize,
+                    germanyCount: count)
+
+                let updateDate = Calendar.current.date(byAdding: .hour, value: 6, to: currentDate)!
+                let timeline = Timeline(entries: [entry], policy: .after(updateDate))
+                completion(timeline)
+            }
+            else {
+                let updateDate = Calendar.current.date(byAdding: .minute, value: 10, to: currentDate)!
+                completion(Timeline(entries: [], policy: .after(updateDate)))
+            }
+        }
     }
 }
 
@@ -53,7 +61,7 @@ struct TopBar: View {
             Spacer()
         }
         .padding()
-        .font(.headline)
+        .font(.callout)
         .foregroundColor(.white)
         .background(Color.red)
     }
@@ -63,23 +71,24 @@ struct CoronaWidgetEntryView : View {
     var entry: Provider.Entry
 
     var body: some View {
-        VStack(spacing: 10) {
-            HStack {
-                Image("swift-alps-logo")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(height: 20, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                Text("Swift Alps")
+        VStack(spacing:0) {
+            TopBar()
+            VStack(alignment: .leading, spacing: 10){
+                VStack(alignment: .leading, spacing: 5) {
+                    Text("🦠 Germany: ")
+                    HStack{
+                        Spacer()
+                        Text("\(entry.germanyCount)")
+                    }
+                }
+
+
                 Spacer()
+
+                Text(entry.date, style: .date)
+                    .font(.footnote)
             }
             .padding()
-            .font(.headline)
-            .foregroundColor(.white)
-            .background(Color.red)
-
-            Text("Hello Widgets!")
-            Text(entry.date, style: .time)
-            Spacer()
         }
         .background(RadialGradient(gradient: Gradient(colors: [Color.white, Color.gray]), center: .center, startRadius: 0.2*entry.size.width, endRadius: 0.8*entry.size.width))
     }
@@ -101,13 +110,13 @@ struct CoronaWidget: Widget {
 struct CoronaWidget_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            CoronaWidgetEntryView(entry: SimpleEntry(date: Date(), configuration: ConfigurationIntent(), size: CGSize(width: 180, height: 180)))
+            CoronaWidgetEntryView(entry: SimpleEntry(date: Date(), configuration: ConfigurationIntent(), size: CGSize(width: 180, height: 180), germanyCount: 1234))
                 .previewContext(WidgetPreviewContext(family: .systemSmall))
 
-            CoronaWidgetEntryView(entry: SimpleEntry(date: Date(), configuration: ConfigurationIntent(), size: CGSize(width: 360, height: 180)))
+            CoronaWidgetEntryView(entry: SimpleEntry(date: Date(), configuration: ConfigurationIntent(), size: CGSize(width: 360, height: 180), germanyCount: 1234))
                 .previewContext(WidgetPreviewContext(family: .systemMedium))
 
-            CoronaWidgetEntryView(entry: SimpleEntry(date: Date(), configuration: ConfigurationIntent(), size: CGSize(width: 360, height: 360)))
+            CoronaWidgetEntryView(entry: SimpleEntry(date: Date(), configuration: ConfigurationIntent(), size: CGSize(width: 360, height: 360), germanyCount: 1234))
                 .previewContext(WidgetPreviewContext(family: .systemLarge))
 
         }
