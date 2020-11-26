@@ -22,6 +22,7 @@ struct MediumWidget: View {
                             Text("\(entry.germanyCount)")
                         }
                     }
+                    .font(.callout)
                     .padding(.all, 5)
                     .background(Color.gray)
                     .cornerRadius(6)
@@ -32,6 +33,7 @@ struct MediumWidget: View {
                             Text("\(entry.incidence, specifier: "%.1f")")
                         }
                     }
+                    .font(.callout)
                     .padding(.all, 5)
                     .background(incidenceBackgroundColor)
                     .foregroundColor(.white)

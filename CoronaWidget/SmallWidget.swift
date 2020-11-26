@@ -11,30 +11,46 @@ import WidgetKit
 struct SmallWidget: View {
     var entry: SimpleEntry
     var body: some View {
-        VStack(spacing:0) {
-            VStack(alignment: .leading, spacing: 10){
-                VStack(alignment: .leading, spacing: 5) {
-                    Text("🦠 Germany: ")
-                    HStack{
-                        Spacer()
-                        Text("\(entry.germanyCount)")
-                    }
+        VStack(alignment: .leading, spacing: 10){
+            VStack(alignment: .leading, spacing: 5) {
+                Text("🦠 Germany: ")
+                HStack{
+                    Spacer()
+                    Text("\(entry.germanyCount)")
                 }
-                VStack(alignment: .leading, spacing: 5) {
-                    Text("🦠 \(entry.regionName)")
-                    HStack{
-                        Spacer()
-                        Text("\(entry.incidence, specifier: "%.1f")")
-                    }
-                }
-                Spacer()
-
-                Text(entry.date, style: .date)
-                    .font(.footnote)
             }
-            .padding()
+            .font(.callout)
+            VStack(alignment: .leading, spacing: 5) {
+                Text("🦠 \(entry.regionName)")
+                HStack{
+                    Spacer()
+                    Text("\(entry.incidence, specifier: "%.1f")")
+                }
+            }
+            .font(.callout)
+            .foregroundColor(incidenceTextColor)
+            Spacer()
+
+            Text(entry.date, style: .date)
+                .font(.footnote)
         }
+        .padding()
         .background(RadialGradient(gradient: Gradient(colors: [Color.white, Color.gray]), center: .center, startRadius: 0.2*entry.size.width, endRadius: 0.8*entry.size.width))
+    }
+
+    var incidenceTextColor: Color {
+        switch entry.incidence {
+        case 0..<50:
+            return .green
+        case 50..<100:
+            return .yellow
+        case 100..<200:
+            return .orange
+        case 200..<300:
+            return .red
+        default:
+            return .black
+        }
     }
 }
 
