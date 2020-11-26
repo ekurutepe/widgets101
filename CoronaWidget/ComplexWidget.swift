@@ -1,34 +1,32 @@
 //
-//  CoronaWidget.swift
-//  CoronaWidget
+//  ComplexWidget.swift
+//  CoronaWidgetExtension
 //
-//  Created by Engin Kurutepe on 22.11.20.
+//  Created by Engin Kurutepe on 26.11.20.
 //
 
 import WidgetKit
 import SwiftUI
 import Intents
 
-struct Provider: IntentTimelineProvider {
+struct MultiLocationProvider: IntentTimelineProvider {
 
-    func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date(), configuration: ConfigurationIntent(), size: context.displaySize, germanyCount: 1234, regionName: "Steglitz", incidence: 234)
+    func placeholder(in context: Context) -> ComplexEntry {
+        ComplexEntry(date: Date(), configuration: LocationSelectionIntent(), size: context.displaySize, germanyCount: 1234, regionName: "Steglitz", incidence: 234)
     }
 
-    func getSnapshot(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-        let entry = SimpleEntry(date: Date(), configuration: configuration, size: context.displaySize, germanyCount: 1234, regionName: "Steglitz", incidence: 234)
+    func getSnapshot(for configuration: LocationSelectionIntent, in context: Context, completion: @escaping (ComplexEntry) -> ()) {
+        let entry = ComplexEntry(date: Date(), configuration: configuration, size: context.displaySize, germanyCount: 1234, regionName: "Steglitz", incidence: 234)
         completion(entry)
     }
 
-    func getTimeline(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
+    func getTimeline(for configuration: LocationSelectionIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
         let currentDate = Date()
-
-
 
         RKICoronaService.shared.fetchGermany { (result) in
             if case .success(let count) = result {
                 let maybeLocation: CLLocation?
-                if let location = configuration.placemark?.location {
+                if let location = configuration.placemark?.placemark?.location {
                     maybeLocation = location
                 } else {
                     maybeLocation = nil
@@ -40,7 +38,7 @@ struct Provider: IntentTimelineProvider {
                         longitude: location.coordinate.longitude) { (result) in
                         switch result {
                         case .success(let incidence):
-                            let entry = SimpleEntry(
+                            let entry = ComplexEntry(
                                 date: currentDate,
                                 configuration: configuration,
                                 size: context.displaySize,
@@ -52,7 +50,7 @@ struct Provider: IntentTimelineProvider {
                             let timeline = Timeline(entries: [entry], policy: .after(updateDate))
                             completion(timeline)
                         case .failure:
-                            let entry = SimpleEntry(
+                            let entry = ComplexEntry(
                                 date: currentDate,
                                 configuration: configuration,
                                 size: context.displaySize,
@@ -68,7 +66,7 @@ struct Provider: IntentTimelineProvider {
                     }
 
                 } else {
-                    let entry = SimpleEntry(
+                    let entry = ComplexEntry(
                         date: currentDate,
                         configuration: configuration,
                         size: context.displaySize,
@@ -91,71 +89,41 @@ struct Provider: IntentTimelineProvider {
     }
 }
 
-struct SimpleEntry: TimelineEntry {
+struct ComplexEntry: TimelineEntry {
     let date: Date
-    let configuration: ConfigurationIntent
+    let configuration: LocationSelectionIntent
     let size: CGSize
     let germanyCount: Int
     let regionName: String
     let incidence: Double
 }
 
-struct TopBar: View {
-    var body: some View {
-        HStack {
-            Image("swift-alps-logo")
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(height: 20, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-            Text("Swift Alps")
-            Spacer()
-        }
-        .padding()
-        .font(.callout)
-        .foregroundColor(.white)
-        .background(Color.red)
-    }
-}
-
-struct CoronaWidgetEntryView : View {
+struct ComplexWidgetEntryView : View {
     @Environment(\.widgetFamily) var widgetFamily
-    var entry: Provider.Entry
+    var entry: MultiLocationProvider.Entry
 
     var body: some View {
-        switch widgetFamily {
-        case .systemMedium:
-            return AnyView(MediumWidget(entry: entry))
-        default:
-            return AnyView(SmallWidget(entry: entry))
-        }
+        Text("hello")
     }
 }
 
-struct CoronaWidget: Widget {
-    let kind: String = "CoronaWidget"
+struct ComplexWidget: Widget {
+    let kind: String = "ComplexWidget"
 
     var body: some WidgetConfiguration {
-        IntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: Provider()) { entry in
-            CoronaWidgetEntryView(entry: entry)
+        IntentConfiguration(kind: kind, intent: LocationSelectionIntent.self, provider: MultiLocationProvider()) { entry in
+            ComplexWidgetEntryView(entry: entry)
         }
-        .configurationDisplayName("Simple Widget")
-        .supportedFamilies([.systemSmall, .systemMedium])
-        .description("This is a widget what shows Corona info for Germany and one selected location.")
+        .configurationDisplayName("Complex Widget")
+        .supportedFamilies([.systemLarge])
+        .description("This is a widget with multiple locations and pre-filled locations")
     }
 }
 
-struct CoronaWidget_Previews: PreviewProvider {
+struct ComplexWidget_Previews: PreviewProvider {
     static var previews: some View {
-        Group {
-            CoronaWidgetEntryView(entry: SimpleEntry(date: Date(), configuration: ConfigurationIntent(), size: CGSize(width: 180, height: 180), germanyCount: 1234, regionName: "Steglitz", incidence: 234))
-                .previewContext(WidgetPreviewContext(family: .systemSmall))
-
-            CoronaWidgetEntryView(entry: SimpleEntry(date: Date(), configuration: ConfigurationIntent(), size: CGSize(width: 360, height: 180), germanyCount: 1234, regionName: "Steglitz", incidence: 234))
-                .previewContext(WidgetPreviewContext(family: .systemMedium))
-
-//            CoronaWidgetEntryView(entry: SimpleEntry(date: Date(), configuration: ConfigurationIntent(), size: CGSize(width: 360, height: 360), germanyCount: 1234, regionName: "Steglitz", incidence: 234))
-//                .previewContext(WidgetPreviewContext(family: .systemLarge))
-
-        }
+        ComplexWidgetEntryView(entry: ComplexEntry(date: Date(), configuration: LocationSelectionIntent(), size: CGSize(width: 360, height: 360), germanyCount: 1234, regionName: "Steglitz", incidence: 234))
+            .previewContext(WidgetPreviewContext(family: .systemLarge))
     }
 }
+

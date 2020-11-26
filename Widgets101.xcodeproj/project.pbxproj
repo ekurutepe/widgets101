@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		871C3503256F990100E44895 /* SmallWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871C34FE256F98B900E44895 /* SmallWidget.swift */; };
 		871C3511256F99A300E44895 /* MediumWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871C3510256F99A300E44895 /* MediumWidget.swift */; };
+		871C3516256FC16100E44895 /* ComplexWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871C3515256FC16100E44895 /* ComplexWidget.swift */; };
+		871C351B256FC25400E44895 /* LocationSelection.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 871C351A256FC25400E44895 /* LocationSelection.intentdefinition */; };
+		871C3520256FC27100E44895 /* WidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871C351F256FC27100E44895 /* WidgetBundle.swift */; };
+		871C352B256FC37B00E44895 /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871C352A256FC37B00E44895 /* IntentHandler.swift */; };
+		871C352F256FC37B00E44895 /* LocationSelectionIntentExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 871C3528256FC37B00E44895 /* LocationSelectionIntentExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		871C3537256FC38C00E44895 /* LocationSelection.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 871C351A256FC25400E44895 /* LocationSelection.intentdefinition */; };
 		875E3D41256AB75900EC142E /* Widgets101App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875E3D2E256AB75800EC142E /* Widgets101App.swift */; };
 		875E3D42256AB75900EC142E /* Widgets101App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875E3D2E256AB75800EC142E /* Widgets101App.swift */; };
 		875E3D43256AB75900EC142E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875E3D2F256AB75800EC142E /* ContentView.swift */; };
@@ -28,6 +34,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		871C352D256FC37B00E44895 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 875E3D29256AB75800EC142E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 871C3527256FC37B00E44895;
+			remoteInfo = LocationSelectionIntentExtension;
+		};
 		875E3D69256ADB2500EC142E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 875E3D29256AB75800EC142E /* Project object */;
@@ -44,6 +57,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
+				871C352F256FC37B00E44895 /* LocationSelectionIntentExtension.appex in Embed App Extensions */,
 				875E3D6B256ADB2500EC142E /* CoronaWidgetExtension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
@@ -54,6 +68,12 @@
 /* Begin PBXFileReference section */
 		871C34FE256F98B900E44895 /* SmallWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallWidget.swift; sourceTree = "<group>"; };
 		871C3510256F99A300E44895 /* MediumWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediumWidget.swift; sourceTree = "<group>"; };
+		871C3515256FC16100E44895 /* ComplexWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplexWidget.swift; sourceTree = "<group>"; };
+		871C351A256FC25400E44895 /* LocationSelection.intentdefinition */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.intentdefinition; path = LocationSelection.intentdefinition; sourceTree = "<group>"; };
+		871C351F256FC27100E44895 /* WidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetBundle.swift; sourceTree = "<group>"; };
+		871C3528256FC37B00E44895 /* LocationSelectionIntentExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = LocationSelectionIntentExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		871C352A256FC37B00E44895 /* IntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentHandler.swift; sourceTree = "<group>"; };
+		871C352C256FC37B00E44895 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		875E3D2E256AB75800EC142E /* Widgets101App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Widgets101App.swift; sourceTree = "<group>"; };
 		875E3D2F256AB75800EC142E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		875E3D30256AB75900EC142E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -73,6 +93,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		871C3525256FC37B00E44895 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		875E3D32256AB75900EC142E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -99,6 +126,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		871C3529256FC37B00E44895 /* LocationSelectionIntentExtension */ = {
+			isa = PBXGroup;
+			children = (
+				871C352A256FC37B00E44895 /* IntentHandler.swift */,
+				871C352C256FC37B00E44895 /* Info.plist */,
+			);
+			path = LocationSelectionIntentExtension;
+			sourceTree = "<group>";
+		};
 		875E3D28256AB75800EC142E = {
 			isa = PBXGroup;
 			children = (
@@ -106,6 +142,7 @@
 				875E3D37256AB75900EC142E /* iOS */,
 				875E3D3E256AB75900EC142E /* macOS */,
 				875E3D60256ADB2500EC142E /* CoronaWidget */,
+				871C3529256FC37B00E44895 /* LocationSelectionIntentExtension */,
 				875E3D5B256ADB2500EC142E /* Frameworks */,
 				875E3D36256AB75900EC142E /* Products */,
 			);
@@ -128,6 +165,7 @@
 				875E3D35256AB75900EC142E /* Widgets101.app */,
 				875E3D3D256AB75900EC142E /* Widgets101.app */,
 				875E3D5A256ADB2500EC142E /* CoronaWidgetExtension.appex */,
+				871C3528256FC37B00E44895 /* LocationSelectionIntentExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -161,12 +199,15 @@
 		875E3D60256ADB2500EC142E /* CoronaWidget */ = {
 			isa = PBXGroup;
 			children = (
+				871C351A256FC25400E44895 /* LocationSelection.intentdefinition */,
 				875E3D61256ADB2500EC142E /* CoronaWidget.swift */,
 				875E3D63256ADB2500EC142E /* CoronaWidget.intentdefinition */,
 				875E3D64256ADB2500EC142E /* Assets.xcassets */,
 				875E3D66256ADB2500EC142E /* Info.plist */,
 				871C34FE256F98B900E44895 /* SmallWidget.swift */,
 				871C3510256F99A300E44895 /* MediumWidget.swift */,
+				871C3515256FC16100E44895 /* ComplexWidget.swift */,
+				871C351F256FC27100E44895 /* WidgetBundle.swift */,
 			);
 			path = CoronaWidget;
 			sourceTree = "<group>";
@@ -174,6 +215,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		871C3527256FC37B00E44895 /* LocationSelectionIntentExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 871C3530256FC37B00E44895 /* Build configuration list for PBXNativeTarget "LocationSelectionIntentExtension" */;
+			buildPhases = (
+				871C3524256FC37B00E44895 /* Sources */,
+				871C3525256FC37B00E44895 /* Frameworks */,
+				871C3526256FC37B00E44895 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LocationSelectionIntentExtension;
+			productName = LocationSelectionIntentExtension;
+			productReference = 871C3528256FC37B00E44895 /* LocationSelectionIntentExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		875E3D34256AB75900EC142E /* Widgets101 (iOS) */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 875E3D49256AB75900EC142E /* Build configuration list for PBXNativeTarget "Widgets101 (iOS)" */;
@@ -187,6 +245,7 @@
 			);
 			dependencies = (
 				875E3D6A256ADB2500EC142E /* PBXTargetDependency */,
+				871C352E256FC37B00E44895 /* PBXTargetDependency */,
 			);
 			name = "Widgets101 (iOS)";
 			productName = "Widgets101 (iOS)";
@@ -236,6 +295,9 @@
 				LastSwiftUpdateCheck = 1220;
 				LastUpgradeCheck = 1220;
 				TargetAttributes = {
+					871C3527256FC37B00E44895 = {
+						CreatedOnToolsVersion = 12.2;
+					};
 					875E3D34256AB75900EC142E = {
 						CreatedOnToolsVersion = 12.2;
 					};
@@ -263,11 +325,19 @@
 				875E3D34256AB75900EC142E /* Widgets101 (iOS) */,
 				875E3D3C256AB75900EC142E /* Widgets101 (macOS) */,
 				875E3D59256ADB2500EC142E /* CoronaWidgetExtension */,
+				871C3527256FC37B00E44895 /* LocationSelectionIntentExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		871C3526256FC37B00E44895 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		875E3D33256AB75900EC142E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -295,6 +365,15 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		871C3524256FC37B00E44895 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				871C3537256FC38C00E44895 /* LocationSelection.intentdefinition in Sources */,
+				871C352B256FC37B00E44895 /* IntentHandler.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		875E3D31256AB75900EC142E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -323,14 +402,22 @@
 				875E3D73256ADB4300EC142E /* RKICoronaService.swift in Sources */,
 				871C3511256F99A300E44895 /* MediumWidget.swift in Sources */,
 				871C3503256F990100E44895 /* SmallWidget.swift in Sources */,
+				871C3520256FC27100E44895 /* WidgetBundle.swift in Sources */,
 				875E3D67256ADB2500EC142E /* CoronaWidget.intentdefinition in Sources */,
+				871C3516256FC16100E44895 /* ComplexWidget.swift in Sources */,
 				875E3D62256ADB2500EC142E /* CoronaWidget.swift in Sources */,
+				871C351B256FC25400E44895 /* LocationSelection.intentdefinition in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		871C352E256FC37B00E44895 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 871C3527256FC37B00E44895 /* LocationSelectionIntentExtension */;
+			targetProxy = 871C352D256FC37B00E44895 /* PBXContainerItemProxy */;
+		};
 		875E3D6A256ADB2500EC142E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 875E3D59256ADB2500EC142E /* CoronaWidgetExtension */;
@@ -339,6 +426,49 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		871C3531256FC37B00E44895 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = MFRY9RPA96;
+				INFOPLIST_FILE = LocationSelectionIntentExtension/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.fifteenjugglers.Widgets101.LocationSelectionIntentExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		871C3532256FC37B00E44895 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = MFRY9RPA96;
+				INFOPLIST_FILE = LocationSelectionIntentExtension/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.fifteenjugglers.Widgets101.LocationSelectionIntentExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 		875E3D47256AB75900EC142E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -595,6 +725,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		871C3530256FC37B00E44895 /* Build configuration list for PBXNativeTarget "LocationSelectionIntentExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				871C3531256FC37B00E44895 /* Debug */,
+				871C3532256FC37B00E44895 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		875E3D2C256AB75800EC142E /* Build configuration list for PBXProject "Widgets101" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
