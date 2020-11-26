@@ -28,7 +28,7 @@
 			<key>INIntentIneligibleForSuggestions</key>
 			<true/>
 			<key>INIntentLastParameterTag</key>
-			<integer>5</integer>
+			<integer>9</integer>
 			<key>INIntentName</key>
 			<string>LocationSelection</string>
 			<key>INIntentParameters</key>
@@ -39,13 +39,13 @@
 					<key>INIntentParameterCustomDisambiguation</key>
 					<true/>
 					<key>INIntentParameterDisplayName</key>
-					<string>Placemark</string>
+					<string>Placemark 1</string>
 					<key>INIntentParameterDisplayNameID</key>
 					<string>LDo0gp</string>
 					<key>INIntentParameterDisplayPriority</key>
 					<integer>1</integer>
 					<key>INIntentParameterName</key>
-					<string>placemark</string>
+					<string>placemark1</string>
 					<key>INIntentParameterObjectType</key>
 					<string>PlacemarkWrapper</string>
 					<key>INIntentParameterObjectTypeNamespace</key>
@@ -76,7 +76,7 @@
 							<key>INIntentParameterPromptDialogCustom</key>
 							<true/>
 							<key>INIntentParameterPromptDialogFormatString</key>
-							<string>There are ${count} options matching ‘${placemark}’.</string>
+							<string>There are ${count} options matching ‘${placemark1}’.</string>
 							<key>INIntentParameterPromptDialogFormatStringID</key>
 							<string>faFBIL</string>
 							<key>INIntentParameterPromptDialogType</key>
@@ -86,7 +86,7 @@
 							<key>INIntentParameterPromptDialogCustom</key>
 							<true/>
 							<key>INIntentParameterPromptDialogFormatString</key>
-							<string>Just to confirm, you wanted ‘${placemark}’?</string>
+							<string>Just to confirm, you wanted ‘${placemark1}’?</string>
 							<key>INIntentParameterPromptDialogFormatStringID</key>
 							<string>ehQmVe</string>
 							<key>INIntentParameterPromptDialogType</key>
@@ -101,6 +101,148 @@
 					<true/>
 					<key>INIntentParameterTag</key>
 					<integer>5</integer>
+					<key>INIntentParameterType</key>
+					<string>Object</string>
+				</dict>
+				<dict>
+					<key>INIntentParameterConfigurable</key>
+					<true/>
+					<key>INIntentParameterCustomDisambiguation</key>
+					<true/>
+					<key>INIntentParameterDisplayName</key>
+					<string>Placemark 2</string>
+					<key>INIntentParameterDisplayNameID</key>
+					<string>OQgQtD</string>
+					<key>INIntentParameterDisplayPriority</key>
+					<integer>2</integer>
+					<key>INIntentParameterName</key>
+					<string>placemark2</string>
+					<key>INIntentParameterObjectType</key>
+					<string>PlacemarkWrapper</string>
+					<key>INIntentParameterObjectTypeNamespace</key>
+					<string>bEZGIJ</string>
+					<key>INIntentParameterPromptDialogs</key>
+					<array>
+						<dict>
+							<key>INIntentParameterPromptDialogCustom</key>
+							<true/>
+							<key>INIntentParameterPromptDialogFormatString</key>
+							<string>City Name</string>
+							<key>INIntentParameterPromptDialogFormatStringID</key>
+							<string>yFxuIR</string>
+							<key>INIntentParameterPromptDialogType</key>
+							<string>Configuration</string>
+						</dict>
+						<dict>
+							<key>INIntentParameterPromptDialogCustom</key>
+							<true/>
+							<key>INIntentParameterPromptDialogFormatString</key>
+							<string>Please select a location</string>
+							<key>INIntentParameterPromptDialogFormatStringID</key>
+							<string>d09bqT</string>
+							<key>INIntentParameterPromptDialogType</key>
+							<string>Primary</string>
+						</dict>
+						<dict>
+							<key>INIntentParameterPromptDialogCustom</key>
+							<true/>
+							<key>INIntentParameterPromptDialogFormatString</key>
+							<string>There are ${count} options matching ‘${placemark2}’.</string>
+							<key>INIntentParameterPromptDialogFormatStringID</key>
+							<string>Mc8CcE</string>
+							<key>INIntentParameterPromptDialogType</key>
+							<string>DisambiguationIntroduction</string>
+						</dict>
+						<dict>
+							<key>INIntentParameterPromptDialogCustom</key>
+							<true/>
+							<key>INIntentParameterPromptDialogFormatString</key>
+							<string>Just to confirm, you wanted ‘${placemark2}’?</string>
+							<key>INIntentParameterPromptDialogFormatStringID</key>
+							<string>vjdmnn</string>
+							<key>INIntentParameterPromptDialogType</key>
+							<string>Confirmation</string>
+						</dict>
+					</array>
+					<key>INIntentParameterSupportsDynamicEnumeration</key>
+					<true/>
+					<key>INIntentParameterSupportsResolution</key>
+					<true/>
+					<key>INIntentParameterSupportsSearch</key>
+					<true/>
+					<key>INIntentParameterTag</key>
+					<integer>7</integer>
+					<key>INIntentParameterType</key>
+					<string>Object</string>
+				</dict>
+				<dict>
+					<key>INIntentParameterConfigurable</key>
+					<true/>
+					<key>INIntentParameterCustomDisambiguation</key>
+					<true/>
+					<key>INIntentParameterDisplayName</key>
+					<string>Placemark 3</string>
+					<key>INIntentParameterDisplayNameID</key>
+					<string>YDOZjH</string>
+					<key>INIntentParameterDisplayPriority</key>
+					<integer>3</integer>
+					<key>INIntentParameterName</key>
+					<string>placemark3</string>
+					<key>INIntentParameterObjectType</key>
+					<string>PlacemarkWrapper</string>
+					<key>INIntentParameterObjectTypeNamespace</key>
+					<string>bEZGIJ</string>
+					<key>INIntentParameterPromptDialogs</key>
+					<array>
+						<dict>
+							<key>INIntentParameterPromptDialogCustom</key>
+							<true/>
+							<key>INIntentParameterPromptDialogFormatString</key>
+							<string>City Name</string>
+							<key>INIntentParameterPromptDialogFormatStringID</key>
+							<string>QYnRFZ</string>
+							<key>INIntentParameterPromptDialogType</key>
+							<string>Configuration</string>
+						</dict>
+						<dict>
+							<key>INIntentParameterPromptDialogCustom</key>
+							<true/>
+							<key>INIntentParameterPromptDialogFormatString</key>
+							<string>Please select a location</string>
+							<key>INIntentParameterPromptDialogFormatStringID</key>
+							<string>XKZpAF</string>
+							<key>INIntentParameterPromptDialogType</key>
+							<string>Primary</string>
+						</dict>
+						<dict>
+							<key>INIntentParameterPromptDialogCustom</key>
+							<true/>
+							<key>INIntentParameterPromptDialogFormatString</key>
+							<string>There are ${count} options matching ‘${placemark3}’.</string>
+							<key>INIntentParameterPromptDialogFormatStringID</key>
+							<string>oGehtY</string>
+							<key>INIntentParameterPromptDialogType</key>
+							<string>DisambiguationIntroduction</string>
+						</dict>
+						<dict>
+							<key>INIntentParameterPromptDialogCustom</key>
+							<true/>
+							<key>INIntentParameterPromptDialogFormatString</key>
+							<string>Just to confirm, you wanted ‘${placemark3}’?</string>
+							<key>INIntentParameterPromptDialogFormatStringID</key>
+							<string>ccNiYD</string>
+							<key>INIntentParameterPromptDialogType</key>
+							<string>Confirmation</string>
+						</dict>
+					</array>
+					<key>INIntentParameterSupportsDynamicEnumeration</key>
+					<true/>
+					<key>INIntentParameterSupportsResolution</key>
+					<true/>
+					<key>INIntentParameterSupportsSearch</key>
+					<true/>
+					<key>INIntentParameterTag</key>
+					<integer>9</integer>
 					<key>INIntentParameterType</key>
 					<string>Object</string>
 				</dict>

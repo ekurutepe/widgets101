@@ -17,8 +17,28 @@ class IntentHandler: INExtension, LocationSelectionIntentHandling {
         CLPlacemark(location: CLLocation(latitude: 53.55, longitude: 9.99), name: "Hamburg", postalAddress: nil),
     ]
 
-    func resolvePlacemark(for intent: LocationSelectionIntent, with completion: @escaping (PlacemarkWrapperResolutionResult) -> Void) {
+    func resolvePlacemark1(for intent: LocationSelectionIntent, with completion: @escaping (PlacemarkWrapperResolutionResult) -> Void) {
         completion(.success(with: PlacemarkWrapper(placemark: favorites.first!)))
+    }
+
+    func resolvePlacemark2(for intent: LocationSelectionIntent, with completion: @escaping (PlacemarkWrapperResolutionResult) -> Void) {
+        completion(.success(with: PlacemarkWrapper(placemark: favorites.first!)))
+    }
+
+    func resolvePlacemark3(for intent: LocationSelectionIntent, with completion: @escaping (PlacemarkWrapperResolutionResult) -> Void) {
+        completion(.success(with: PlacemarkWrapper(placemark: favorites.first!)))
+    }
+
+    func providePlacemark1OptionsCollection(for intent: LocationSelectionIntent, searchTerm: String?, with completion: @escaping (INObjectCollection<PlacemarkWrapper>?, Error?) -> Void) {
+        providePlacemarkOptionsCollection(for: intent, searchTerm: searchTerm, with: completion)
+    }
+
+    func providePlacemark2OptionsCollection(for intent: LocationSelectionIntent, searchTerm: String?, with completion: @escaping (INObjectCollection<PlacemarkWrapper>?, Error?) -> Void) {
+        providePlacemarkOptionsCollection(for: intent, searchTerm: searchTerm, with: completion)
+    }
+
+    func providePlacemark3OptionsCollection(for intent: LocationSelectionIntent, searchTerm: String?, with completion: @escaping (INObjectCollection<PlacemarkWrapper>?, Error?) -> Void) {
+        providePlacemarkOptionsCollection(for: intent, searchTerm: searchTerm, with: completion)
     }
 
     func providePlacemarkOptionsCollection(for intent: LocationSelectionIntent, searchTerm: String?, with completion: @escaping (INObjectCollection<PlacemarkWrapper>?, Error?) -> Void) {

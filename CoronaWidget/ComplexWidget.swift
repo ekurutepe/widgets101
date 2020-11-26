@@ -12,80 +12,76 @@ import Intents
 struct MultiLocationProvider: IntentTimelineProvider {
 
     func placeholder(in context: Context) -> ComplexEntry {
-        ComplexEntry(date: Date(), configuration: LocationSelectionIntent(), size: context.displaySize, germanyCount: 1234, regionName: "Steglitz", incidence: 234)
+        ComplexEntry(date: Date(), configuration: LocationSelectionIntent(), size: context.displaySize, germanyCount: 1234, incidences: [
+                        LocalIncidence(name: "Berlin", incidence: 250),
+                        LocalIncidence(name: "Hamburg", incidence: 123),
+        ] )
     }
 
     func getSnapshot(for configuration: LocationSelectionIntent, in context: Context, completion: @escaping (ComplexEntry) -> ()) {
-        let entry = ComplexEntry(date: Date(), configuration: configuration, size: context.displaySize, germanyCount: 1234, regionName: "Steglitz", incidence: 234)
+        let entry = ComplexEntry(date: Date(), configuration: configuration, size: context.displaySize, germanyCount: 1234, incidences: [
+            LocalIncidence(name: "Berlin", incidence: 250),
+            LocalIncidence(name: "Hamburg", incidence: 123),
+        ] )
         completion(entry)
     }
 
     func getTimeline(for configuration: LocationSelectionIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
         let currentDate = Date()
 
+        var germanyCount = 0
+        var incidences: [Int: LocalIncidence] = [:]
+
+        let group = DispatchGroup()
+        group.enter()
         RKICoronaService.shared.fetchGermany { (result) in
-            if case .success(let count) = result {
-                let maybeLocation: CLLocation?
-                if let location = configuration.placemark?.placemark?.location {
-                    maybeLocation = location
-                } else {
-                    maybeLocation = nil
-                }
-
-                if let location = maybeLocation {
-                    RKICoronaService.shared.fetchCoordinate(
-                        latitude: location.coordinate.latitude,
-                        longitude: location.coordinate.longitude) { (result) in
-                        switch result {
-                        case .success(let incidence):
-                            let entry = ComplexEntry(
-                                date: currentDate,
-                                configuration: configuration,
-                                size: context.displaySize,
-                                germanyCount: count,
-                                regionName: incidence.name,
-                                incidence: incidence.incidence)
-
-                            let updateDate = Calendar.current.date(byAdding: .hour, value: 6, to: currentDate)!
-                            let timeline = Timeline(entries: [entry], policy: .after(updateDate))
-                            completion(timeline)
-                        case .failure:
-                            let entry = ComplexEntry(
-                                date: currentDate,
-                                configuration: configuration,
-                                size: context.displaySize,
-                                germanyCount: count,
-                                regionName: "error",
-                                incidence: 0)
-
-                            let updateDate = Calendar.current.date(byAdding: .hour, value: 6, to: currentDate)!
-                            let timeline = Timeline(entries: [entry], policy: .after(updateDate))
-                            completion(timeline)
-
-                        }
-                    }
-
-                } else {
-                    let entry = ComplexEntry(
-                        date: currentDate,
-                        configuration: configuration,
-                        size: context.displaySize,
-                        germanyCount: count,
-                        regionName: "no location",
-                        incidence: 0)
-
-                    let updateDate = Calendar.current.date(byAdding: .hour, value: 6, to: currentDate)!
-                    let timeline = Timeline(entries: [entry], policy: .after(updateDate))
-                    completion(timeline)
-
-                }
-
-            }
-            else {
+            defer { group.leave() }
+            switch (result) {
+            case .success(let count):
+                germanyCount = count
+            case .failure(let error):
+                print(error)
                 let updateDate = Calendar.current.date(byAdding: .minute, value: 10, to: currentDate)!
                 completion(Timeline(entries: [], policy: .after(updateDate)))
             }
         }
+
+        let locations = [configuration.placemark1, configuration.placemark2,configuration.placemark3]
+            .compactMap { $0?.placemark?.location }
+
+        for (idx,loc) in locations.enumerated() {
+            group.enter()
+            RKICoronaService.shared.fetchCoordinate(
+                latitude: loc.coordinate.latitude,
+                longitude: loc.coordinate.longitude) { (result) in
+                defer { group.leave() }
+                switch result {
+                case .success(let incidence):
+                    incidences[idx] = incidence
+                case .failure(let error):
+                    print(error)
+                }
+            }
+        }
+
+        let _ = group.wait(timeout: .now() + .seconds(5))
+
+        let sortedIncidences = incidences.sorted { (lhs, rhs) -> Bool in
+            lhs.key < rhs.key
+        }.map(\.value)
+
+        let updateDate = Calendar.current.date(byAdding: .hour, value: 6, to: currentDate)!
+
+        let entry = ComplexEntry(
+            date: currentDate,
+            configuration: configuration,
+            size: context.displaySize,
+            germanyCount: germanyCount,
+            incidences: sortedIncidences)
+
+        let timeline = Timeline(entries: [entry], policy: .after(updateDate))
+
+        completion(timeline)
     }
 }
 
@@ -94,8 +90,7 @@ struct ComplexEntry: TimelineEntry {
     let configuration: LocationSelectionIntent
     let size: CGSize
     let germanyCount: Int
-    let regionName: String
-    let incidence: Double
+    let incidences: [LocalIncidence]
 }
 
 struct ComplexWidgetEntryView : View {
@@ -122,7 +117,16 @@ struct ComplexWidget: Widget {
 
 struct ComplexWidget_Previews: PreviewProvider {
     static var previews: some View {
-        ComplexWidgetEntryView(entry: ComplexEntry(date: Date(), configuration: LocationSelectionIntent(), size: CGSize(width: 360, height: 360), germanyCount: 1234, regionName: "Steglitz", incidence: 234))
+        ComplexWidgetEntryView(
+            entry: ComplexEntry(
+                date: Date(),
+                configuration: LocationSelectionIntent(),
+                size: CGSize(width: 360, height: 360),
+                germanyCount: 1234,
+                incidences: [
+                    LocalIncidence(name: "Berlin", incidence: 250),
+                    LocalIncidence(name: "Hamburg", incidence: 120)
+                ]))
             .previewContext(WidgetPreviewContext(family: .systemLarge))
     }
 }
