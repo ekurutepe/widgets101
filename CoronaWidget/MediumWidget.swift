@@ -33,7 +33,8 @@ struct MediumWidget: View {
                         }
                     }
                     .padding(.all, 5)
-                    .background(Color.gray)
+                    .background(incidenceBackgroundColor)
+                    .foregroundColor(.white)
                     .cornerRadius(6)
                 }
                 Spacer()
@@ -43,6 +44,21 @@ struct MediumWidget: View {
             .padding(.all, 10)
         }
         .background(RadialGradient(gradient: Gradient(colors: [Color.white, Color.gray]), center: .center, startRadius: 0.2*entry.size.width, endRadius: 0.8*entry.size.width))
+    }
+
+    var incidenceBackgroundColor: Color {
+        switch entry.incidence {
+        case 0..<50:
+            return .green
+        case 50..<100:
+            return .yellow
+        case 100..<200:
+            return .orange
+        case 200..<300:
+            return .red
+        default:
+            return .black
+        }
     }
 }
 
