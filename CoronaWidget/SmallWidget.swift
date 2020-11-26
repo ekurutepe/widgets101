@@ -8,38 +8,39 @@
 import SwiftUI
 import WidgetKit
 
-struct SmallWidget: View {
-    var entry: SimpleEntry
-    var body: some View {
-        VStack(alignment: .leading, spacing: 10){
-            VStack(alignment: .leading, spacing: 5) {
-                Text("🦠 Germany: ")
-                HStack{
-                    Spacer()
-                    Text("\(entry.germanyCount)")
-                }
-            }
-            .font(.callout)
-            VStack(alignment: .leading, spacing: 5) {
-                Text("🦠 \(entry.regionName)")
-                HStack{
-                    Spacer()
-                    Text("\(entry.incidence, specifier: "%.1f")")
-                }
-            }
-            .font(.callout)
-            .foregroundColor(incidenceTextColor)
-            Spacer()
+struct GermanyCount: View {
+    var count: Int
 
-            Text(entry.date, style: .date)
-                .font(.footnote)
+    var body: some View {
+        VStack(alignment: .leading, spacing: 5) {
+            Text("🦠 Germany: ")
+            HStack{
+                Spacer()
+                Text("\(count)")
+            }
         }
-        .padding()
-        .background(RadialGradient(gradient: Gradient(colors: [Color.white, Color.gray]), center: .center, startRadius: 0.2*entry.size.width, endRadius: 0.8*entry.size.width))
+        .font(.callout)
+    }
+}
+
+struct IncidenceDisplay: View {
+    var name: String
+    var incidence: Double
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 5) {
+            Text("🦠 \(name)")
+            HStack{
+                Spacer()
+                Text("\(incidence, specifier: "%.1f")")
+            }
+        }
+        .font(.callout)
+        .foregroundColor(incidenceTextColor)
     }
 
     var incidenceTextColor: Color {
-        switch entry.incidence {
+        switch incidence {
         case 0..<50:
             return .green
         case 50..<100:
@@ -52,6 +53,24 @@ struct SmallWidget: View {
             return .black
         }
     }
+}
+
+struct SmallWidget: View {
+    var entry: SimpleEntry
+    var body: some View {
+        VStack(alignment: .leading, spacing: 10){
+            GermanyCount(count: entry.germanyCount)
+            IncidenceDisplay(name: entry.regionName, incidence: entry.incidence)
+            Spacer()
+
+            Text(entry.date, style: .date)
+                .font(.footnote)
+        }
+        .padding()
+        .background(RadialGradient(gradient: Gradient(colors: [Color.white, Color.gray]), center: .center, startRadius: 0.2*entry.size.width, endRadius: 0.8*entry.size.width))
+    }
+
+
 }
 
 struct SmallWidget_Previews: PreviewProvider {

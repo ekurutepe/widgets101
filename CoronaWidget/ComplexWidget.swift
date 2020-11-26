@@ -15,6 +15,7 @@ struct MultiLocationProvider: IntentTimelineProvider {
         ComplexEntry(date: Date(), configuration: LocationSelectionIntent(), size: context.displaySize, germanyCount: 1234, incidences: [
                         LocalIncidence(name: "Berlin", incidence: 250),
                         LocalIncidence(name: "Hamburg", incidence: 123),
+                        LocalIncidence(name: "Stuttgart", incidence: 234),
         ] )
     }
 
@@ -98,7 +99,14 @@ struct ComplexWidgetEntryView : View {
     var entry: MultiLocationProvider.Entry
 
     var body: some View {
-        Text("hello")
+        LazyVGrid(columns: [GridItem(.flexible(minimum: 100, maximum: 200), spacing: 5, alignment: .center),
+                            GridItem(.flexible(minimum: 100, maximum: 200), spacing: 5, alignment: .center)]) {
+            GermanyCountBox(count: entry.germanyCount)
+            ForEach(entry.incidences, id: \.name) {
+                IncidenceBox(name: $0.name, incidence: $0.incidence)
+            }
+        }
+        .padding()
     }
 }
 
@@ -125,7 +133,8 @@ struct ComplexWidget_Previews: PreviewProvider {
                 germanyCount: 1234,
                 incidences: [
                     LocalIncidence(name: "Berlin", incidence: 250),
-                    LocalIncidence(name: "Hamburg", incidence: 120)
+                    LocalIncidence(name: "Hamburg", incidence: 120),
+                    LocalIncidence(name: "Stuttgart", incidence: 234)
                 ]))
             .previewContext(WidgetPreviewContext(family: .systemLarge))
     }

@@ -8,48 +8,44 @@
 import SwiftUI
 import WidgetKit
 
-struct MediumWidget: View {
-    var entry: SimpleEntry
+struct GermanyCountBox: View {
+    var count: Int
     var body: some View {
-        VStack(spacing:0) {
-            TopBar()
-            VStack(alignment: .leading, spacing: 0){
-                HStack(spacing: 10) {
-                    VStack(alignment: .leading, spacing: 5) {
-                        Text("🦠 Germany: ")
-                        HStack{
-                            Spacer()
-                            Text("\(entry.germanyCount)")
-                        }
-                    }
-                    .font(.callout)
-                    .padding(.all, 5)
-                    .background(Color.gray)
-                    .cornerRadius(6)
-                    VStack(alignment: .leading, spacing: 5) {
-                        Text("🦠 \(entry.regionName)")
-                        HStack{
-                            Spacer()
-                            Text("\(entry.incidence, specifier: "%.1f")")
-                        }
-                    }
-                    .font(.callout)
-                    .padding(.all, 5)
-                    .background(incidenceBackgroundColor)
-                    .foregroundColor(.white)
-                    .cornerRadius(6)
-                }
+        VStack(alignment: .leading, spacing: 5) {
+            Text("🦠 Germany: ")
+            HStack{
                 Spacer()
-                Text(entry.date, style: .date)
-                    .font(.footnote)
+                Text("\(count)")
             }
-            .padding(.all, 10)
         }
-        .background(RadialGradient(gradient: Gradient(colors: [Color.white, Color.gray]), center: .center, startRadius: 0.2*entry.size.width, endRadius: 0.8*entry.size.width))
+        .font(.callout)
+        .padding(.all, 5)
+        .background(Color.gray)
+        .cornerRadius(6)
+    }
+}
+
+struct IncidenceBox: View {
+    var name: String
+    var incidence: Double
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 5) {
+            Text("🦠 \(name)")
+            HStack{
+                Spacer()
+                Text("\(incidence, specifier: "%.1f")")
+            }
+        }
+        .font(.callout)
+        .padding(.all, 5)
+        .background(incidenceBackgroundColor)
+        .foregroundColor(.white)
+        .cornerRadius(6)
     }
 
     var incidenceBackgroundColor: Color {
-        switch entry.incidence {
+        switch incidence {
         case 0..<50:
             return .green
         case 50..<100:
@@ -62,6 +58,28 @@ struct MediumWidget: View {
             return .black
         }
     }
+}
+
+struct MediumWidget: View {
+    var entry: SimpleEntry
+    var body: some View {
+        VStack(spacing:0) {
+            TopBar()
+            VStack(alignment: .leading, spacing: 0){
+                HStack(spacing: 10) {
+                    GermanyCountBox(count: entry.germanyCount)
+                    IncidenceBox(name: entry.regionName, incidence: entry.incidence)
+                }
+                Spacer()
+                Text(entry.date, style: .date)
+                    .font(.footnote)
+            }
+            .padding(.all, 10)
+        }
+        .background(RadialGradient(gradient: Gradient(colors: [Color.white, Color.gray]), center: .center, startRadius: 0.2*entry.size.width, endRadius: 0.8*entry.size.width))
+    }
+
+
 }
 
 struct MediumWidget_Previews: PreviewProvider {
