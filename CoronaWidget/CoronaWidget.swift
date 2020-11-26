@@ -118,34 +118,16 @@ struct TopBar: View {
 }
 
 struct CoronaWidgetEntryView : View {
+    @Environment(\.widgetFamily) var widgetFamily
     var entry: Provider.Entry
 
     var body: some View {
-        VStack(spacing:0) {
-            TopBar()
-            VStack(alignment: .leading, spacing: 10){
-                VStack(alignment: .leading, spacing: 5) {
-                    Text("🦠 Germany: ")
-                    HStack{
-                        Spacer()
-                        Text("\(entry.germanyCount)")
-                    }
-                }
-                VStack(alignment: .leading, spacing: 5) {
-                    Text("🦠 \(entry.regionName)")
-                    HStack{
-                        Spacer()
-                        Text("\(entry.incidence)")
-                    }
-                }
-                Spacer()
-
-                Text(entry.date, style: .date)
-                    .font(.footnote)
-            }
-            .padding()
+        switch widgetFamily {
+        case .systemMedium:
+            return AnyView(MediumWidget(entry: entry))
+        default:
+            return AnyView(SmallWidget(entry: entry))
         }
-        .background(RadialGradient(gradient: Gradient(colors: [Color.white, Color.gray]), center: .center, startRadius: 0.2*entry.size.width, endRadius: 0.8*entry.size.width))
     }
 }
 
@@ -158,6 +140,7 @@ struct CoronaWidget: Widget {
             CoronaWidgetEntryView(entry: entry)
         }
         .configurationDisplayName("My Widget")
+        .supportedFamilies([.systemSmall, .systemMedium])
         .description("This is an example widget.")
     }
 }
@@ -171,8 +154,8 @@ struct CoronaWidget_Previews: PreviewProvider {
             CoronaWidgetEntryView(entry: SimpleEntry(date: Date(), configuration: ConfigurationIntent(), size: CGSize(width: 360, height: 180), germanyCount: 1234, regionName: "Steglitz", incidence: 234))
                 .previewContext(WidgetPreviewContext(family: .systemMedium))
 
-            CoronaWidgetEntryView(entry: SimpleEntry(date: Date(), configuration: ConfigurationIntent(), size: CGSize(width: 360, height: 360), germanyCount: 1234, regionName: "Steglitz", incidence: 234))
-                .previewContext(WidgetPreviewContext(family: .systemLarge))
+//            CoronaWidgetEntryView(entry: SimpleEntry(date: Date(), configuration: ConfigurationIntent(), size: CGSize(width: 360, height: 360), germanyCount: 1234, regionName: "Steglitz", incidence: 234))
+//                .previewContext(WidgetPreviewContext(family: .systemLarge))
 
         }
     }

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		871C3503256F990100E44895 /* SmallWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871C34FE256F98B900E44895 /* SmallWidget.swift */; };
+		871C3511256F99A300E44895 /* MediumWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871C3510256F99A300E44895 /* MediumWidget.swift */; };
 		875E3D41256AB75900EC142E /* Widgets101App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875E3D2E256AB75800EC142E /* Widgets101App.swift */; };
 		875E3D42256AB75900EC142E /* Widgets101App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875E3D2E256AB75800EC142E /* Widgets101App.swift */; };
 		875E3D43256AB75900EC142E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875E3D2F256AB75800EC142E /* ContentView.swift */; };
@@ -50,6 +52,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		871C34FE256F98B900E44895 /* SmallWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallWidget.swift; sourceTree = "<group>"; };
+		871C3510256F99A300E44895 /* MediumWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediumWidget.swift; sourceTree = "<group>"; };
 		875E3D2E256AB75800EC142E /* Widgets101App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Widgets101App.swift; sourceTree = "<group>"; };
 		875E3D2F256AB75800EC142E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		875E3D30256AB75900EC142E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -161,6 +165,8 @@
 				875E3D63256ADB2500EC142E /* CoronaWidget.intentdefinition */,
 				875E3D64256ADB2500EC142E /* Assets.xcassets */,
 				875E3D66256ADB2500EC142E /* Info.plist */,
+				871C34FE256F98B900E44895 /* SmallWidget.swift */,
+				871C3510256F99A300E44895 /* MediumWidget.swift */,
 			);
 			path = CoronaWidget;
 			sourceTree = "<group>";
@@ -315,6 +321,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				875E3D73256ADB4300EC142E /* RKICoronaService.swift in Sources */,
+				871C3511256F99A300E44895 /* MediumWidget.swift in Sources */,
+				871C3503256F990100E44895 /* SmallWidget.swift in Sources */,
 				875E3D67256ADB2500EC142E /* CoronaWidget.intentdefinition in Sources */,
 				875E3D62256ADB2500EC142E /* CoronaWidget.swift in Sources */,
 			);
